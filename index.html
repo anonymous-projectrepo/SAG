@@ -754,7 +754,7 @@
   <div class="container">
 
     <header>
-      <h1>Selective Critique is Enough: Cost-Aware Feedback for LLM Agents in Long-Horizon Interactive Environments</h1>
+      <h1>Selective Critique for Cost-Aware LLM Agents in Long-Horizon Decision Making</h1>
       <div class="authors">anonymous</div>
 
       <div class="links">
@@ -814,24 +814,21 @@
 
         <div class="abstract-container">
           <p>
-            Large language model (LLM) agents in long-horizon interactive environments often rely on auxiliary critique to improve reliability,
-            but invoking critique at every step (i.e., always-on critique) is computationally expensive and can severely reduce token efficiency.
-            We propose <strong>SAG</strong>
-            (<em><strong>S</strong>elf-improving <strong>A</strong>gent with <strong>G</strong>ated critique</em>),
-            a cost-aware framework showing that <em>selective critique is enough</em>.
-          </p>
-
-          <p>
-            SAG treats critique invocation as a decision problem and queries a critic only when the expected benefit is likely to outweigh its cost.
-            Because exact value-of-information (VoI) is intractable, SAG uses lightweight uncertainty proxies from the actor:
-            <strong>global ambiguity</strong> (entropy) and <strong>local ambiguity</strong> (top-2 probability margin) over candidate actions.
-            These signals drive a simple bounded gating rule that selectively triggers critique.
-          </p>
-
-          <p>
-            SAG further improves online by learning from successful interactions, allowing the actor to progressively reduce reliance on critique over time.
-            Across long-horizon interactive benchmarks, SAG substantially improves the success–cost trade-off, matching or exceeding always-on critique
-            while using a token budget comparable to a no-critique agent.
+            Improving the reliability of large language model (LLM) agents in long-horizon decision-making remains a key challenge. 
+            When deployed as autonomous agents interacting with complex environments, early mistakes can propagate through trajectories and cause cascading failures.
+            Recent approaches improve reliability by incorporating external critique or deliberation, 
+            but invoking these mechanisms at every step substantially increases token consumption and latency, 
+            limiting practical deployment. We propose SAG (Self-improving Agent with Gated critique), 
+            a cost-aware framework that formulates critique invocation as a step-wise decision problem during long-horizon interaction.
+            SAG introduces a lightweight, training-free gating mechanism that estimates the utility of critique using action-level ambiguity signals—global entropy and local top-2 margin—computed over admissible actions. 
+            From a decision-theoretic perspective, this mechanism approximates the Value of Information (VoI) of critique, 
+            enabling the agent to selectively allocate expensive feedback only when its expected benefit justifies the cost. 
+            SAG further incorporates online bootstrapped self-improvement, allowing the actor to internalize critic-assisted behaviors and progressively reduce reliance on critique.
+            Across three long-horizon interactive benchmarks and multiple backbone models, 
+            SAG substantially improves the success–cost trade-off compared with both no-critique and always-on critique agents. 
+            On ALFWorld, SAG increases task success from $24.6\%$ to $78.3\%$ while maintaining a token budget comparable to ReAct, 
+            yielding a $3.1\times$ improvement in normalized token efficiency. Moreover, a $7$B actor with a lightweight $3$B critic achieves performance comparable to a $14$B actor without critique,
+            showing that selective critique can recover most of the reliability benefits of deliberation while dramatically reducing inference cost.
           </p>
         </div>
       </div>
