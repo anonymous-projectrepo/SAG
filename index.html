@@ -919,7 +919,9 @@
         </p>
 
         <div class="math-block">
-          $$g_t = \mathbb{I} \left[ \mathbb{E}[\mathcal{L}_{error}] > C_{interv} \right]$$
+          <!-- $$g_t = \mathbb{I} \left[ \mathbb{E}[\mathcal{L}_{error}] > C_{interv} \right]$$ -->
+          $$S_t = \bar{H}_t + \mathbb{I}[m_t < \delta]$$
+          $$g_t = \mathbb{I} \left[ S_t > \tau \right]$$
         </div>
 
         <h3>2. Robust Confidence Signals</h3>
